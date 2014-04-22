@@ -1,5 +1,27 @@
 {
-  "name": "package",
+  "name": "<%= _.slugify(projectName) %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "connect": "^2.14.4",
+    "connect-livereload": "^0.4.0",
+    "gulp": "^3.6.0",
+    "gulp-ruby-sass": "^0.4.3", 
+    "gulp-autoprefixer": "^0.0.6",
+    "gulp-bower-files": "^0.2.1",
+    "gulp-cache": "^0.1.1",
+    "gulp-clean": "^0.2.4",
+    "gulp-csso": "^0.2.6",
+    "gulp-imagemin": "^0.2.0",
+    "gulp-svgmin": "^0.4.5",
+    "gulp-jshint": "^1.5.3",
+    "gulp-livereload": "^1.2.0",
+    "gulp-ruby-sass": "^0.4.3",
+    "gulp-uglify": "^0.2.1",
+    "opn": "^0.1.1",
+    "wiredep": "^1.4.3"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
 }

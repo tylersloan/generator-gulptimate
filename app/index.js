@@ -23,28 +23,33 @@ var GulptimateGenerator = yeoman.generators.Base.extend({
     this.log(this.yeoman);
 
     // replace it with a short and sweet description of your generator
-    this.log(chalk.magenta('You\'re using the fantastic Gulptimate generator.'));
+    this.log(chalk.magenta('You\'re using the ultimate Gulptimate generator.'));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'projectName',
+      message: 'What do you want this project to be called?'
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.projectName = props.projectName;
 
       done();
     }.bind(this));
   },
 
   app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
+    this.mkdir('src');
 
-    this.copy('_package.json', 'package.json');
+    this.mkdir('src/scss');
+    this.mkdir('src/images');
+    this.mkdir('src/js');
+
+    this.template('gulpfile.js', 'gulpfile.js');
+    this.template('src/index.html', 'index.html');
+
     this.copy('_bower.json', 'bower.json');
+    this.copy('_config.json', 'config.json');
+    this.copy('_package.json', 'package.json');
   },
 
   projectfiles: function () {
