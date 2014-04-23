@@ -167,6 +167,47 @@ var GulptimateGenerator = yeoman.generators.Base.extend({
   projectfiles: function () {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
+  },
+
+  install: function(){
+    var howToInstall =
+      '\nAfter running `npm install & bower install`, inject your front end dependencies into' +
+      '\nyour HTML by running:' +
+      '\n' +
+      chalk.yellow.bold('\n  gulp wiredep');
+
+    if(this.options['skip-install']){
+      console.log(howToInstall);
+      return;
+    }
+
+    var done = this.async();
+    this.installDependencies({
+      skipMessage: this.options['skip-install-message'],
+      skipInstall: this.options['skip-install'],
+      callback: function(){
+        var bowerJson = JSON.parse(fs.readFileSync('./bower.json'));
+
+        // wire Bower packages to .html
+        wiredep({
+          bowerJson: bowerJson,
+          directory: 'app/bower_components',
+          exclude: ['bootstrap-sass'],
+          src: 'app/index.html'
+        });
+
+        if (this.includeSass) {
+          // wire Bower packages to .scss
+          wiredep({
+            bowerJson: bowerJson,
+            directory: 'app/bower_components',
+            src: 'app/styles/*.scss'
+          });
+        }
+
+        done();
+      }.bind(this)
+    })
   }
 
 });
