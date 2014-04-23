@@ -1,6 +1,6 @@
 {
   "name": "<%= _.slugify(projectName) %>",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
     "connect": "^2.14.4",
@@ -15,8 +15,8 @@
     "gulp-imagemin": "^0.2.0",
     "gulp-svgmin": "^0.4.5",
     "gulp-jshint": "^1.5.3",
-    "gulp-livereload": "^1.2.0",
-    "gulp-ruby-sass": "^0.4.3",
+    "gulp-livereload": "^1.2.0",<% if (includeSass) { %>
+    "gulp-ruby-sass": "^0.4.3",<% } %>
     "gulp-uglify": "^0.2.1",
     "opn": "^0.1.1",
     "wiredep": "^1.4.3"

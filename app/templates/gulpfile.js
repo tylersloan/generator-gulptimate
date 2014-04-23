@@ -89,10 +89,20 @@ gulp.task('serve', ['connect', 'styles'], function(){
 });
 
 gulp.task('wiredep', function(){
+<% if (includeSass) { %>
   gulp.src('src/styles/*.scss')
-    .pipe(wiredep({ directory: 'src/bower_components' }))
-    .pipe(gulp.dest(styleFiles))
-});
+    .pipe('wiredep'({
+      directory: 'src/bower_components'
+    }))
+    .pipe(gulp.dest(styleFiles));
+<% } %>
+  gulp.src('src/*.html')
+  .pipe(wireded({
+    directory: 'src/bower_components'<% if (includeSass && includeBootstrap) { %>,
+    exclude: ['bootstrap-sass']<% } %>
+  }))
+  .pipe(gulp.dest('src'));
+})
 
 gulp.task('watch', function(){
   var server = livereload();
