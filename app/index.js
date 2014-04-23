@@ -191,17 +191,17 @@ var GulptimateGenerator = yeoman.generators.Base.extend({
         // wire Bower packages to .html
         wiredep({
           bowerJson: bowerJson,
-          directory: 'app/bower_components',
+          directory: 'src/bower_components',
           exclude: ['bootstrap-sass'],
-          src: 'app/index.html'
+          src: 'src/index.html'
         });
 
         if (this.includeSass) {
           // wire Bower packages to .scss
           wiredep({
             bowerJson: bowerJson,
-            directory: 'app/bower_components',
-            src: 'app/styles/*.scss'
+            directory: 'src/bower_components',
+            src: 'src/styles/*.scss'
           });
         }
 
