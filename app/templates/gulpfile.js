@@ -15,7 +15,7 @@ var gulp         = require('gulp'),
     notify       = require('gulp-notify'),
     cache        = require('gulp-cache'),
     swig         = require('gulp-swig'),
-    wiredep      = require('wiredep'),
+    wiredep      = require('wiredep').stream,
     connect      = require('gulp-connect'),
     livereload   = require('gulp-livereload'),
 
